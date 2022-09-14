@@ -1,26 +1,23 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
-  <button @click="show = !show">Menu</button>
-  <transition name="fade">
-    <Menu v-show="show"></Menu>
-  </transition>
+  <div>
+    <Modal />
+  </div>
 </template>
 
 <script>
-import Menu from "./components/Menu.vue";
-// import { defineAsyncComponent } from "vue";
+import Modal from "./components/Modal.vue";
 
 // const HelloWorld = defineAsyncComponent(() => import("./components/HelloWorld.vue"));
 
 export default {
   name: "App",
   components: {
-    Menu,
+    Modal
   },
   data() {
     return {
-      show: false,
-      componentId: "HelloWorld",
+      
     };
   },
 };
