@@ -7,7 +7,7 @@ module.exports = {
 
   extends: [
     "plugin:vue/vue3-essential",
-    "eslint:recommended",
+    // "eslint:recommended",
     // "plugin:prettier/recommended",
   ],
 
@@ -19,11 +19,13 @@ module.exports = {
     'no-console': 'off',
     'no-debugger': 'off',
     "vue/valid-template-root": "off",
+    "vue/no-parsing-error": "off",
+    "vue/multi-word-component-names": "off",
   },
 
   'extends': [
     'plugin:vue/vue3-essential',
-    'eslint:recommended',
+    // 'eslint:recommended',
     // 'plugin:prettier/recommended'
   ]
 };
