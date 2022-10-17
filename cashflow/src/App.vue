@@ -1,17 +1,41 @@
 <template>
   <div>
-    <Home />
+    <!-- <SplashScreen /> -->
+    <!-- <Home /> -->
+    <Suspense>
+      <template #default>
+        <Home />
+      </template>
+      <template #fallback>
+        <SplashScreen/>
+      </template>
+    </Suspense>
   </div>
 </template>
 
 <script>
-import Home from "@/components/Home";
+import SplashScreen from "@/components/SplashScreen.vue"
+import {defineAsyncComponent} from 'vue'
 
 export default {
   components: {
-    Home,
+    SplashScreen,
+    Home: defineAsyncComponent(() => 
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(import("@/components/Home.vue"))
+        }, 3000);
+      })
+    )
   },
 };
 </script>
 
-<style></style>
+<style>
+html, body, .app {
+  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+</style>
