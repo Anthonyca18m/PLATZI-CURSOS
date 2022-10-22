@@ -3,33 +3,33 @@
       <template #header>
         <Header></Header>
       </template>
+      <template #resume>     
+        <Resume></Resume>      
+      </template>
+      <template #movements>
+        <Movements></Movements>
+      </template>
   </Layout>
 </template>
 
 <script>
   import Layout from "./Layout.vue"
   import Header from "./Header.vue"
+  import Resume from "./Resume/Index.vue"
+  import Movements from "./Movements.vue"
 
 export default {
   components: {
     Layout,
     Header,
-  }
+    Resume,
+    Movements,
+}
 };
 </script>
 
 <style scoped>
 
-  .header, .resume, .movements {
-    display: flex;
-    justify-content: space-around;
-    justify-items: center;
-    padding: 14px 0px;
-    box-sizing: border-box;
-  }
-  .header {
-    position: fixed;
-    width: 100vw;
-  }
+
 
 </style>
