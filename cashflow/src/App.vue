@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- <SplashScreen /> -->
-    <!-- <Home /> -->
     <Suspense>
       <template #default>
         <Home />
