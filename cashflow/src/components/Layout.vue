@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <slot name="header"></slot>
-    </div>
+    </div> 
     <div class="resume">
         <slot name="resume"></slot>
     </div>
