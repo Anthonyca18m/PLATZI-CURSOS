@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -12,7 +13,15 @@ class AuthController extends Controller
     {
         $this->validateLogin($request);
 
-        
+        if (Auth::attempt($request->only('email', 'password'))) {
+
+            return response([
+                'token' => $request->user()->createToken($request->name)->plainTextToken,
+                'message' => 'Success'
+            ]);
+        }
+
+        return response(['message' => 'Unauthorized'], 401);
     }
 
     public function validateLogin($request)
