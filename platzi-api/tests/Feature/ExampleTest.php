@@ -18,4 +18,12 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_index()
+    {
+        $response = $this->getJson('/api/products');
+        $response->assertSuccessful();
+        $response->assertHeader('content-type', 'application/json');
+        $response->assertJsonCount(50);
+    }
 }
