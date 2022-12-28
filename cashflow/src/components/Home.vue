@@ -5,10 +5,16 @@
       </template>
       <template #resume>     
         <Resume
+          :total-label="'2022-02-02'"
           :label="'Ahorro total'"  
           :total-amount="100000"
           :amount="1000"
-        ></Resume>      
+        >
+        <template #graphic>graphic
+        </template>
+        <template #action>action
+        </template>
+      </Resume>      
       </template>
       <template #movements>
         <Movements></Movements>

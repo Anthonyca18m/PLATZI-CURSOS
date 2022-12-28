@@ -1,13 +1,25 @@
 <template>
     <div class="main">
-        <p>{{ label }}</p>
-        <h1>{{ amountVisual }}</h1>
+        <p>{{ labelVisual }}</p>
+        <h1>{{ amountCurrency }}</h1>
+        <div class="graphic">
+            <slot name="graphic"></slot>
+        </div>
+        <div class="action">
+            <slot name="action"></slot>
+        </div>
     </div>
 </template>
 <script>
+const formatx = Intl.NumberFormat("es-PE", { style: 'currency', currency: 'PEN' });
+
 export default {
     props: {
         label: {
+            type: String,
+            default: null
+        },
+        totalLabel: {
             type: String,
         },
         totalAmount: {
@@ -22,7 +34,13 @@ export default {
     computed: {
         amountVisual() {
             return (this.amount == null) ? this.totalAmount : this.amount 
-        }
+        },
+        labelVisual() {
+            return (this.label == null) ? this.totalLabel : this.label
+        },
+        amountCurrency() {
+            return formatx.format(this.amountVisual)
+        },
     }
 }
 </script>
@@ -33,6 +51,7 @@ export default {
         justify-content: center;
         justify-items: center;
         flex-direction: column;
+        align-items: center;
         width: 100%;
     }
     h1, p {
