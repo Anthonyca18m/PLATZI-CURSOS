@@ -43,7 +43,7 @@ export default {
         id: 1,
         title: 'loren akosmd lasdjiw',
         description: 'lorem jknasdmejh nmehasn kjadisd',
-        amount: 1000,
+        amount: -1000,
       },
       {
         id: 2,

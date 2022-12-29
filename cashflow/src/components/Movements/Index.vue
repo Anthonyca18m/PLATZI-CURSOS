@@ -3,7 +3,13 @@
       <h2 class="title">Historial</h2>
       <div class="content">
         <Movement 
-        v-for="m, i in movements" :key="i" :title="m.title" />
+          v-for="(m, i) in movements" :key="i" 
+          :id="m.id"
+          :title="m.title"
+          :description="m.description"
+          :amount="m.amount"
+          @remove="remove"
+         /> 
       </div>
     </div>
 </template>
@@ -18,6 +24,8 @@
       default: () => [],
     }
   }) 
+
+  const remove = (id) => { alert(id)}
 
   const { movements } = toRefs(props)
 
