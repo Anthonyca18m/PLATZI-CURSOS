@@ -11,7 +11,7 @@
           :amount="amount"
         >
         <template #graphic>
-          <Graphic />
+          <Graphic :amounts="amounts"/>
         </template>
         <template #action>
           <Action />
@@ -77,7 +77,10 @@ export default {
         description: 'lorem jknasdmejh nmehasn kjadisd',
         amount: 1000,
       },
-    ]
+    ],
+    amounts: [
+      500,200,-100,1000,-250,700,600    
+    ],
   })
   
 };
