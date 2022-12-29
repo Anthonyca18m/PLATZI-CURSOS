@@ -4,7 +4,35 @@
     
     <teleport to="#app">
         <Modal v-show="showModal" @close="showModal = !showModal">
-            Aqui Formulario
+            <form @submit.prevent="submit">
+                <div class="field">
+                    <label>titulo</label>
+                    <input v-model="title" type="text" />
+                </div>
+                <div class="field">
+                    <label>Monto</label>
+                    <input v-model="amount" type="number" />
+                </div>
+                <div class="field">
+                    <label>descripción</label>
+                    <textarea rows="4" v-model="description"></textarea>
+                </div>
+                <div class="field">
+                    <label class="radio-label">
+                        <input type="radio" v-model="movementType" value="Ingreso"/>
+                        <span>Ingreso</span>
+                    </label>
+                </div>
+                <div class="field">
+                    <label class="radio-label">
+                        <input type="radio" v-model="movementType" value="Gasto"/>
+                        <span>Gasto</span>
+                    </label>
+                </div>
+                <div class="action">
+                    <button>Agregar movimiento</button>
+                </div>                
+            </form>
         </Modal>
     </teleport>    
 </template>
@@ -15,6 +43,11 @@ import Modal from './Modal.vue'
 import { ref } from 'vue';
 
 const showModal = ref(false)
+const {title, description} = ref('')
+const amount = ref(0)
+const movementType = ref('Ingreso')
+
+const submit = () => { showModal.value = !showModal.value }
 
 </script>
 
