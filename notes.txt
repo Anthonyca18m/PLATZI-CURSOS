@@ -6,3 +6,4 @@ RAMAS Y CURSOS:
 4:  Curso de API REST con Laravel
 5:  Curso de MySQL
 6:  Curso Avanzado de Laravel
+7:  Curso de Vue.js Navegacion con Vue Router
