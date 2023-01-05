@@ -14,7 +14,7 @@
           <Graphic :amounts="amounts"/>
         </template>
         <template #action>
-          <Action />
+          <Action @create="create"/>
         </template>
       </Resume>      
       </template>
@@ -84,6 +84,11 @@ export default {
       },
     ],
   }),
+  methods: {
+    create(movement) {
+      this.movements.push(movement)
+    },
+  },
   computed: {
     amounts(){
       const lastDays = this.movements

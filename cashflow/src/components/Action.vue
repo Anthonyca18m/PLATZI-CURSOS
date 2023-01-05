@@ -39,15 +39,29 @@
 
 <script setup>
 import Modal from './Modal.vue'
-
-import { ref } from 'vue';
+import { ref, defineEmits } from 'vue'
+import { v4 as uuidv4 } from 'uuid';
 
 const showModal = ref(false)
-const {title, description} = ref('')
+const title = ref('')
+const description = ref('')
 const amount = ref(0)
 const movementType = ref('Ingreso')
 
-const submit = () => { showModal.value = !showModal.value }
+const emit = defineEmits(['create'])
+
+const submit = () => { 
+  
+  emit('create', {
+    id: uuidv4(),
+    title: title.value,
+    description: description.value,
+    amount: (movementType.value === 'Ingreso') ? amount.value : -amount.value,
+    time: new Date(),
+  })
+
+  showModal.value = !showModal.value
+}
 
 </script>
 

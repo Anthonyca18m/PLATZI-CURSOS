@@ -25,7 +25,11 @@
     }
   }) 
 
-  const remove = (id) => { alert(id)}
+  const remove = (id) => { 
+    const index = movements.value.findIndex(m => m.id === id)
+    movements.value.splice(index, 1)
+
+  }
 
   const { movements } = toRefs(props)
 
