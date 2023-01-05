@@ -60,7 +60,16 @@ const submit = () => {
     time: new Date(),
   })
 
-  showModal.value = !showModal.value
+  clear()
+}
+
+const clear = () => {
+  
+  showModal.value = false
+  title.value = ''
+  description.value = ''
+  amount.value = 0
+  movementType.value = 'Ingreso'
 }
 
 </script>

@@ -7,7 +7,7 @@
         <Resume
           :total-label="label"
           :label="'Ahorro total'"  
-          :total-amount="100000"
+          :total-amount="totalAmount"
           :amount="amount"
         >
         <template #graphic>
@@ -19,7 +19,7 @@
       </Resume>      
       </template>
       <template #movements>
-        <Movements :movements="movements"></Movements>
+        <Movements :movements="movements" @remove="remove"></Movements>
       </template>
   </Layout>
 </template>
@@ -46,47 +46,20 @@ export default {
     total: null,
     label: null,
     amount: null,
-    movements: [
-      {
-        id: 1,
-        title: 'loren akosmd lasdjiw',
-        description: 'lorem jknasdmejh nmehasn kjadisd',
-        amount: -1000,
-        time: new Date("12-01-2022")
-      },
-      {
-        id: 2,
-        title: 'loren akosmd lasdjiw 2',
-        description: 'lorem jknasdmejh nmehasn kjadisd',
-        amount: 2000,
-        time: new Date("12-14-2022")
-      },
-      {
-        id: 3,
-        title: 'loren akosmd lasdjiw 3',
-        description: 'lorem jknasdmejh nmehasn kjadisd',
-        amount: 3000,
-        time: new Date("12-23-2022")
-      },
-      {
-        id: 4,
-        title: 'loren akosmd lasdjiw 4',
-        description: 'lorem jknasdmejh nmehasn kjadisd',
-        amount: 4000,
-        time: new Date("12-20-2022")
-      },
-      {
-        id: 5,
-        title: 'loren akosmd lasdjiw 5',
-        description: 'lorem jknasdmejh nmehasn kjadisd',
-        amount: 1000,
-        time: new Date("12-10-2022")
-      },
-    ],
+    movements: [],
   }),
   methods: {
     create(movement) {
       this.movements.push(movement)
+      this.save()
+    },
+    remove(id) {
+      const index = this.movements.findIndex(m => m.id === id)
+      this.movements.splice(index, 1)
+      this.save()
+    },
+    save() {
+      localStorage.setItem('movements', this.movements)
     },
   },
   computed: {
@@ -108,7 +81,22 @@ export default {
           }, 0)
         })
     },
+    totalAmount() {
+      return this.movements.reduce((suma, m) => {
+        return suma + m.amount
+      }, 0)
+    }
   },
+  mounted() {
+    const movements = localStorage.getItem('movements')
+
+    if (Array.isArray(movements)) {
+      this.movements = movements.map(m => {
+        return {...m, time: new Date(m.time) }
+      })  
+    }
+    
+  }
   
 };
 </script>

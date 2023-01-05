@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-  import { toRefs, defineProps } from 'vue';
+  import { toRefs, defineProps, defineEmits } from 'vue';
   import Movement from './Movement.vue'
 
   const props = defineProps({
@@ -25,10 +25,10 @@
     }
   }) 
 
-  const remove = (id) => { 
-    const index = movements.value.findIndex(m => m.id === id)
-    movements.value.splice(index, 1)
+  const emit = defineEmits(['remove'])
 
+  const remove = (id) => { 
+    emit('remove', id)
   }
 
   const { movements } = toRefs(props)
