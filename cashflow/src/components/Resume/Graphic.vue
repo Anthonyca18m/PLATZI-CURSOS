@@ -34,7 +34,7 @@
     </div>
 </template>
 <script setup>
-    import { ref, toRefs, defineProps, computed, defineEmits } from "vue";
+    import { ref, toRefs, defineProps, computed, defineEmits, watch } from "vue";
     const props = defineProps({
     amounts: {
         type: Array,
@@ -58,12 +58,19 @@
         const x = (300 / total) * (i + 1);
         const y = amountToPixels(amount);
         return `${points} ${x},${y}`;
-    }, "0, 100");
+    }, `0, ${amountToPixels(amounts.value.length ? amounts.value[0] : 0) }`);
     });
     const showPointer = ref(false);
     const pointer = ref(0);
 
     const emit = defineEmits(['select'])
+
+    watch(pointer, (value) => {
+        const index = Math.ceil(value / (300 / amounts.value.length))
+
+        if (index < 0 || index > amounts.value.length) return
+        emit('select', amounts.value[index - 1]) 
+    })
 
     const tap = ({ target, touches }) => {
         showPointer.value = true;
@@ -71,7 +78,6 @@
         const elementX = target.getBoundingClientRect().x;
         const touchX = touches[0].clientX;
         pointer.value = ((touchX - elementX) * 300) / elementWidth;
-        // emit('select', amount)
     };
     const untap = () => {
     showPointer.value = false;
