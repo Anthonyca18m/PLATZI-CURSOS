@@ -7,6 +7,12 @@
 </template>
 <script>
 export default {
+    props: {
+        id: {
+            type: String, 
+            default: ''
+        }
+    },
     data: () => ({
         messages: [
             { id: 1, message: 'message 1', author: 1 },
@@ -18,7 +24,7 @@ export default {
     }),
     computed: {
         messagesFilter () {
-            return this.messages.filter(m => `${m.author}` === this.$route.params.id)
+            return this.messages.filter(m => `${m.author}` === this.id)
         }
     }
 }

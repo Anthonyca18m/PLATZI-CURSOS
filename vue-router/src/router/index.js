@@ -17,7 +17,7 @@ const router = createRouter({
       component: () => import('../views/SessionView.vue'),
       children: [
         {
-          path: '',
+          path: '/',
           components: {
             default: () => import('../views/LoginView.vue'),
             register: () => import('../views/RegisterView.vue'),
@@ -41,7 +41,10 @@ const router = createRouter({
         {
           path: ':id',
           name: 'chat',
-          component: () => import('../views/ChatView.vue')
+          component: () => import('../views/ChatView.vue'),
+          props: (route) => ({
+            id: route.params.id
+          })
         }
       ]
     }    
