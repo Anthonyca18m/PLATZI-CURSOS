@@ -6,17 +6,18 @@
   </div>
 </template>
 
-<script>
-  export default {
-    data: () => ({
-      username: '',
-    }),
-    methods: {
-      submit() {
-        this.$router.push({name: 'chats'}) // ir
-        // this.$router.replace({name: 'chats'}) // reemplazar página sin historial
-        // this.$router.go(-1) // avanzar o retroceder páginas
-      }
-    }
+
+
+<script setup>
+  import { ref } from 'vue'
+  import { useRouter } from 'vue-router'
+
+  const username = ref('')
+  const router = useRouter()
+
+  const submit = () => {
+    
+    router.push({name: 'chats'})
   }
+
 </script>
