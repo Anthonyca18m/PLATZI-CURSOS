@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import NotFound from '../views/404View.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -42,7 +43,7 @@ const router = createRouter({
       component: () => import('../views/ChatsView.vue'),
       children: [
         {
-          path: ':id',
+          path: ':id(\\d+)',
           name: 'chat',
           component: () => import('../views/ChatView.vue'),
           props: (route) => ({
@@ -50,7 +51,17 @@ const router = createRouter({
           })
         }
       ]
-    }    
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: NotFound
+    },
+    {
+      path: '/:catchAll(.*)',
+      name: '404',
+      component: NotFound
+    },
   ]
 })
 
