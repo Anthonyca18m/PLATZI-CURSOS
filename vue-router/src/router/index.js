@@ -57,12 +57,12 @@ const router = createRouter({
 router.beforeEach((to, from) => {
   console.log(to, from)
 
-  if (to.meta?.requiredAuth) {
-    return '/session'
-  }
+  // if (to.meta?.requiredAuth) {
+  //   return '/session'
+  // }
 
   // if(to.path === '/') return { name: 'about'}
-  return true
+  // return true
 })
 
 export default router
