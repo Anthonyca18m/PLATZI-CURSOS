@@ -2,28 +2,24 @@ package platzi.market.persistence.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "clientes")
+@Table(name="clientes")
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-
-    @Column(name = "nombre")
     private String nombre;
-
-    @Column(name = "apellidos")
     private String apellidos;
-
-    @Column(name = "celular")
     private Long celular;
-
-    @Column(name = "direccion")
     private String direccion;
 
-    @Column(name = "correo_electronico")
+    @Column(name="correo_electronico")
     private String correoElectronico;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Compra> compras;
 
     public String getId() {
         return id;
