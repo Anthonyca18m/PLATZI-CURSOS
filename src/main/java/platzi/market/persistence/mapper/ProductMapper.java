@@ -8,6 +8,7 @@ import platzi.market.domain.mapper.Product;
 import platzi.market.persistence.entity.Producto;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper(componentModel = "spring", uses = {
         CategoryMapper.class
@@ -30,4 +31,5 @@ public interface ProductMapper {
     Producto toProducto(Product product);
 
     List<Product> toProducts(List<Producto> productos);
+
 }
