@@ -28,6 +28,8 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/api/pizzas/**").hasAnyRole("ADMIN", "CUSTOMER")
+                        .requestMatchers(HttpMethod.PUT).hasRole("ADMIN")
+                        .requestMatchers("/api/orders/random").hasAuthority("random_order")
                         .requestMatchers("/api/orders/**").hasRole("ADMIN")
                         //.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         //.requestMatchers(HttpMethod.PUT).denyAll()
