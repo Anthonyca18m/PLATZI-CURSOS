@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serializable;
 
@@ -19,7 +20,8 @@ import java.io.Serializable;
 @Table(name = "pizza")
 @EntityListeners({
         AuditableEntity.class,
-        AuditPizzaListener.class
+        AuditPizzaListener.class,
+        AuditingEntityListener.class
 })
 @Getter
 @Setter
